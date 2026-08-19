@@ -5,6 +5,7 @@ import { MyOrdersNavLink } from "./MyOrdersNavLink";
 const NAV_LINKS = [
   { href: "/carte", label: "Carte" },
   { href: "/reservation", label: "Réservation" },
+  { href: "/avis", label: "Avis" },
   { href: "/#infos", label: "Infos" },
 ];
 
