@@ -49,8 +49,9 @@ export function MyOrdersNavLink() {
   if (!activeCount) return null;
 
   return (
-    <Link href="/mes-commandes" className="hover:text-blanc-casse transition-colors">
-      Vos commandes en cours ({activeCount})
+    <Link href="/mes-commandes" className="hover:text-blanc-casse transition-colors whitespace-nowrap">
+      <span className="hidden sm:inline">Vos commandes en cours</span>
+      <span className="sm:hidden">Commandes</span> ({activeCount})
     </Link>
   );
 }

@@ -10,14 +10,14 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="bg-bois px-6 py-3.5 flex items-center justify-between">
-      <Link href="/" className="flex items-center gap-3">
+    <header className="bg-bois px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+      <Link href="/" className="flex items-center gap-3 shrink-0">
         <Logo variant="icon" />
-        <span className="font-serif font-bold text-lg text-blanc-casse">
+        <span className="font-serif font-bold text-base sm:text-lg text-blanc-casse">
           Guinguette A&amp;M
         </span>
       </Link>
-      <nav className="flex gap-5 text-sm text-[oklch(0.85_0.02_70)]">
+      <nav className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[oklch(0.85_0.02_70)]">
         {NAV_LINKS.map((link) => (
           <Link key={link.href} href={link.href} className="hover:text-blanc-casse transition-colors">
             {link.label}

@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${fraunces.variable} ${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-creme text-noir font-sans">
+      <body className="min-h-full flex flex-col bg-creme text-noir font-sans overflow-x-hidden">
         {children}
       </body>
     </html>
