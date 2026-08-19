@@ -13,20 +13,13 @@ Next.js (App Router) + Supabase (Postgres, Auth, Realtime).
 - `/admin` — administration (protégé) : gestion de la carte + réservations
 - `/connexion` — connexion équipe (Supabase Auth), partagée par `/cuisine` et `/admin`
 
-## Développement
+## Déploiement
 
-```bash
-npm install
-cp .env.local.example .env.local   # renseigner les valeurs Supabase
-npm run dev
-```
-
-Variables d'environnement (`.env.local`) :
-
-```
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
-```
+Le site est déployé automatiquement sur Vercel à chaque push sur `main`,
+en production sur https://guinguette-am.vercel.app. Les variables Supabase
+(`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) sont
+configurées dans `vercel.json` — ce sont les clés publiques/publishable,
+protégées par les policies RLS, donc sans risque d'y figurer.
 
 ## Base de données
 
