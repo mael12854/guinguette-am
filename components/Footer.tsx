@@ -7,7 +7,7 @@ export function Footer() {
             Notre histoire
           </h2>
           <p className="text-sm leading-relaxed max-w-2xl">
-            Abel et Maël se connaissent depuis dix ans. En 2026, ils ouvrent leur
+            Abel et Maël se connaissent depuis trois ans. En 2026, ils ouvrent leur
             guinguette dans la salle des grands-parents de Maël : une grande pièce aux
             poutres apparentes, une verrière qui laisse entrer le soleil, un babyfoot
             dans un coin, et vue sur la rivière. On n&apos;a pas grand-chose — quelques
@@ -16,7 +16,7 @@ export function Footer() {
           </p>
         </div>
         <p className="font-serif italic text-base text-[oklch(0.85_0.05_60)]">
-          &quot;A&amp;M&quot; pour Abel &amp; Maël — deux amis de dix ans qui ouvrent leur
+          &quot;A&amp;M&quot; pour Abel &amp; Maël — deux amis de trois ans qui ouvrent leur
           guinguette.
         </p>
         <p className="text-xs">Guinguette A&amp;M · Depuis 2026</p>
