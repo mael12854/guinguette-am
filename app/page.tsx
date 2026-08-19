@@ -60,14 +60,15 @@ export default function Home() {
             </div>
             <div>
               <h2 className="font-serif font-semibold text-2xl text-bois mb-3">
-                Adresse
+                Où nous trouver
               </h2>
               <p className="text-sm text-noir/80 leading-relaxed">
-                Maison Artoré
+                À la Maison Artoré, 28bis avenue de la République, à Igny — suivez la
+                lumière et le bruit du babyfoot.
                 <br />
-                28bis avenue de la République, Igny
                 <br />
-                Réservation conseillée le week-end
+                Réservation conseillée le week-end, surtout quand le soleil est de la
+                partie.
               </p>
             </div>
           </div>
