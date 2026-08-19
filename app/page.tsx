@@ -63,9 +63,9 @@ export default function Home() {
                 Adresse
               </h2>
               <p className="text-sm text-noir/80 leading-relaxed">
-                Guinguette A&amp;M
+                Maison Artoré
                 <br />
-                Bords de rivière
+                28bis avenue de la République, Igny
                 <br />
                 Réservation conseillée le week-end
               </p>
