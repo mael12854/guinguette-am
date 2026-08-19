@@ -7,7 +7,7 @@ import { getPublicReviews } from "@/lib/data/reviews";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Avis — Guinguette A&M",
+  title: "Avis",
 };
 
 export default async function AvisPage() {

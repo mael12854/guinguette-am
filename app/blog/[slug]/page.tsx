@@ -12,7 +12,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const post = await getPublishedPostBySlug(slug);
-  return { title: post ? `${post.title} — Guinguette A&M` : "Guinguette A&M" };
+  return { title: post ? post.title : "Guinguette A&M" };
 }
 
 export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {

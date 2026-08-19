@@ -15,10 +15,30 @@ const poppins = Poppins({
   weight: ["400", "500", "600"],
 });
 
+const SITE_URL = "https://guinguette-am.vercel.app";
+const DESCRIPTION =
+  "Grande salle, poutres en bois, verrière, babyfoot — la guinguette d'Abel & Maël.";
+
 export const metadata: Metadata = {
-  title: "Guinguette A&M",
-  description:
-    "Grande salle, poutres en bois, verrière, babyfoot — la guinguette d'Abel & Maël.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Guinguette A&M",
+    template: "%s · Guinguette A&M",
+  },
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Guinguette A&M",
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Guinguette A&M",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guinguette A&M",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

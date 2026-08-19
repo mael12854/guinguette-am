@@ -7,7 +7,7 @@ import { getPublishedPosts } from "@/lib/data/posts";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog — Guinguette A&M",
+  title: "Blog",
 };
 
 export default async function BlogPage() {
