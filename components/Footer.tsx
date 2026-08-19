@@ -8,9 +8,10 @@ export function Footer() {
           </h2>
           <p className="text-sm leading-relaxed max-w-2xl">
             Abel et Maël se connaissent depuis trois ans. En 2026, ils ouvrent leur
-            guinguette dans la salle des grands-parents de Maël : une grande pièce aux
-            poutres apparentes, une verrière qui laisse entrer le soleil, un babyfoot
-            dans un coin, et vue sur la rivière. On n&apos;a pas grand-chose — quelques
+            guinguette à la Maison Artoré, chez Dominique et Dominique Artoré, les
+            grands-parents de Maël : une grande pièce aux poutres apparentes, une
+            verrière qui laisse entrer le soleil, un babyfoot dans un coin, et vue sur
+            la rivière. On n&apos;a pas grand-chose — quelques
             boissons fraîches, une mousse au chocolat maison, de quoi grignoter — mais
             tout est fait avec soin, entre amis.
           </p>
