@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getPublishedPosts } from "@/lib/data/posts";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Blog — Guinguette A&M",
+};
 
 export default async function BlogPage() {
   const posts = await getPublishedPosts();

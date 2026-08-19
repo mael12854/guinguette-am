@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ReviewsList } from "@/components/ReviewsList";
 import { getPublicReviews } from "@/lib/data/reviews";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Avis — Guinguette A&M",
+};
 
 export default async function AvisPage() {
   const reviews = await getPublicReviews();

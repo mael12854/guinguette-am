@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
@@ -5,6 +6,14 @@ import { Footer } from "@/components/Footer";
 import { getPublishedPostBySlug } from "@/lib/data/posts";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata(
+  props: PageProps<"/blog/[slug]">
+): Promise<Metadata> {
+  const { slug } = await props.params;
+  const post = await getPublishedPostBySlug(slug);
+  return { title: post ? `${post.title} — Guinguette A&M` : "Guinguette A&M" };
+}
 
 export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   const { slug } = await props.params;
