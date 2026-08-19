@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import type { Reservation, Review } from "@/lib/types";
+import type { Post, Reservation, Review } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
 
 export async function getAllMenuItems(): Promise<MenuItemWithOptions[]> {
@@ -35,6 +35,17 @@ export async function getReservations(): Promise<Reservation[]> {
     .select("*")
     .order("reservation_date", { ascending: true })
     .order("reservation_time", { ascending: true });
+
+  if (error || !data) return [];
+  return data;
+}
+
+export async function getAllPosts(): Promise<Post[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   if (error || !data) return [];
   return data;

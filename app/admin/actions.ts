@@ -90,3 +90,72 @@ export async function deleteOption(id: string) {
   revalidatePath("/admin");
   revalidatePath("/carte");
 }
+
+function slugify(title: string) {
+  return title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+    .slice(0, 80);
+}
+
+export async function createPost(formData: FormData) {
+  const supabase = await requireStaff();
+  const title = String(formData.get("title") ?? "").trim();
+  const excerpt = String(formData.get("excerpt") ?? "").trim();
+  const content = String(formData.get("content") ?? "").trim();
+  const published = formData.get("published") === "on";
+
+  if (!title || !content) return;
+
+  const baseSlug = slugify(title) || "article";
+  let slug = baseSlug;
+  let attempt = 0;
+  let insertError = null;
+
+  do {
+    const { error } = await supabase.from("posts").insert({
+      title,
+      slug,
+      excerpt: excerpt || null,
+      content,
+      published,
+    });
+    insertError = error;
+    if (error?.code === "23505") {
+      attempt += 1;
+      slug = `${baseSlug}-${attempt + 1}`;
+    }
+  } while (insertError?.code === "23505" && attempt < 5);
+
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+}
+
+export async function updatePost(formData: FormData) {
+  const supabase = await requireStaff();
+  const id = String(formData.get("id") ?? "");
+  const title = String(formData.get("title") ?? "").trim();
+  const excerpt = String(formData.get("excerpt") ?? "").trim();
+  const content = String(formData.get("content") ?? "").trim();
+  const published = formData.get("published") === "on";
+
+  if (!id || !title || !content) return;
+
+  await supabase
+    .from("posts")
+    .update({ title, excerpt: excerpt || null, content, published })
+    .eq("id", id);
+
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+}
+
+export async function deletePost(id: string) {
+  const supabase = await requireStaff();
+  await supabase.from("posts").delete().eq("id", id);
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+}
