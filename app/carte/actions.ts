@@ -13,7 +13,8 @@ export interface CartLine {
 export async function submitOrder(
   customerName: string,
   tableLabel: string,
-  lines: CartLine[]
+  lines: CartLine[],
+  notes?: string
 ): Promise<{ orderId: string } | { error: string }> {
   const name = customerName.trim();
   if (!name) return { error: "Merci d'indiquer votre nom." };
@@ -26,6 +27,7 @@ export async function submitOrder(
     .insert({
       customer_name: name,
       table_label: tableLabel.trim() || null,
+      notes: notes?.trim() || null,
     })
     .select("id")
     .single();

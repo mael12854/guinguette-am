@@ -44,8 +44,18 @@ export interface Order {
   customer_name: string;
   table_label: string | null;
   status: OrderStatus;
+  notes: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export interface Review {
+  id: string;
+  order_id: string | null;
+  rating: number;
+  customer_name: string | null;
+  comment: string | null;
+  created_at: string;
 }
 
 export interface OrderItem {

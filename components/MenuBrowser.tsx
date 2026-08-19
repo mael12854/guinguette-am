@@ -24,6 +24,7 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
   const [cart, setCart] = useState<CartEntry[]>([]);
   const [customerName, setCustomerName] = useState("");
   const [tableLabel, setTableLabel] = useState("");
+  const [kitchenNote, setKitchenNote] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [justAddedId, setJustAddedId] = useState<string | null>(null);
@@ -93,7 +94,8 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
     const result = await submitOrder(
       customerName,
       tableLabel,
-      cart.map(({ key: _key, itemName: _itemName, optionLabel: _optionLabel, ...line }) => line)
+      cart.map(({ key: _key, itemName: _itemName, optionLabel: _optionLabel, ...line }) => line),
+      kitchenNote
     );
     setSubmitting(false);
     if ("error" in result) {
@@ -195,6 +197,16 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
             onChange={(e) => setTableLabel(e.target.value)}
             placeholder="Ex. Table 4"
             className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white"
+          />
+          <label className="text-xs uppercase tracking-wide text-noir/60 mt-1">
+            Petit mot pour la cuisine (optionnel)
+          </label>
+          <textarea
+            value={kitchenNote}
+            onChange={(e) => setKitchenNote(e.target.value)}
+            placeholder="Ex. pas trop épicé, allergie noisette..."
+            rows={2}
+            className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white resize-none"
           />
         </div>
 

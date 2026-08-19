@@ -76,6 +76,11 @@ export function KitchenBoard({ orders }: { orders: OrderWithLines[] }) {
                 </li>
               ))}
             </ul>
+            {order.notes && (
+              <p className="text-sm text-terracotta bg-terracotta/10 rounded-sm px-2.5 py-1.5">
+                💬 {order.notes}
+              </p>
+            )}
             {next && (
               <button
                 onClick={() => updateOrderStatus(order.id, next.status)}

@@ -1,12 +1,17 @@
 import { AdminMenuManager } from "@/components/AdminMenuManager";
 import { ReservationsTable } from "@/components/ReservationsTable";
-import { getAllMenuItems, getReservations } from "@/lib/data/admin";
+import { ReviewsList } from "@/components/ReviewsList";
+import { getAllMenuItems, getReservations, getReviews } from "@/lib/data/admin";
 import { logout } from "@/app/connexion/actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
-  const [items, reservations] = await Promise.all([getAllMenuItems(), getReservations()]);
+  const [items, reservations, reviews] = await Promise.all([
+    getAllMenuItems(),
+    getReservations(),
+    getReviews(),
+  ]);
 
   return (
     <>
@@ -28,6 +33,10 @@ export default async function AdminPage() {
         <section>
           <h2 className="font-serif font-bold text-3xl text-bois mb-6">Réservations</h2>
           <ReservationsTable reservations={reservations} />
+        </section>
+        <section>
+          <h2 className="font-serif font-bold text-3xl text-bois mb-6">Avis clients</h2>
+          <ReviewsList reviews={reviews} />
         </section>
       </main>
     </>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { submitReview } from "@/app/suivi/actions";
 import type { OrderStatus } from "@/lib/types";
 import type { OrderWithLines } from "@/lib/data/orders";
 
@@ -90,6 +91,86 @@ export function OrderTracker({ initialOrder }: { initialOrder: OrderWithLines })
           ))}
         </ul>
       </div>
+
+      {order.status === "servie" && <ReviewForm orderId={order.id} />}
+    </div>
+  );
+}
+
+function ReviewForm({ orderId }: { orderId: string }) {
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="border border-vert/30 bg-vert/10 rounded-sm p-6 text-center">
+        <p className="font-serif font-semibold text-lg text-bois">Merci pour votre avis !</p>
+      </div>
+    );
+  }
+
+  async function handleSubmit() {
+    if (rating === 0) {
+      setError("Choisissez une note.");
+      return;
+    }
+    setError(null);
+    setSubmitting(true);
+    const result = await submitReview(orderId, rating, name, comment);
+    setSubmitting(false);
+    if ("error" in result) {
+      setError(result.error);
+      return;
+    }
+    setSubmitted(true);
+  }
+
+  return (
+    <div className="border border-bois/15 rounded-sm p-6 bg-blanc-casse flex flex-col gap-3">
+      <p className="font-serif font-semibold text-lg text-bois">Votre avis nous intéresse</p>
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            key={n}
+            type="button"
+            onClick={() => setRating(n)}
+            onMouseEnter={() => setHoverRating(n)}
+            onMouseLeave={() => setHoverRating(0)}
+            className="text-3xl leading-none"
+            aria-label={`${n} étoile${n > 1 ? "s" : ""}`}
+          >
+            <span className={n <= (hoverRating || rating) ? "text-velux" : "text-bois/20"}>
+              ★
+            </span>
+          </button>
+        ))}
+      </div>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Votre nom (optionnel)"
+        className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white"
+      />
+      <textarea
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        placeholder="Un commentaire (optionnel)"
+        rows={3}
+        className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white resize-none"
+      />
+      {error && <p className="text-sm text-terracotta">{error}</p>}
+      <button
+        onClick={handleSubmit}
+        disabled={submitting}
+        className="inline-flex items-center justify-center text-sm font-medium px-6 py-2.5 rounded-sm transition-colors disabled:opacity-50 bg-terracotta text-blanc-casse hover:opacity-90 self-start"
+      >
+        {submitting ? "Envoi..." : "Envoyer mon avis"}
+      </button>
     </div>
   );
 }
