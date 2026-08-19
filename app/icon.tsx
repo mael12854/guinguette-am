@@ -6,6 +6,7 @@ export const contentType = "image/png";
 const BOIS = "#4A3324";
 const TERRACOTTA = "#7A4B2A";
 const CREME = "#F3EEE3";
+const VELUX = "#E8B94A";
 
 async function loadFrauncesItalic(text: string) {
   const cssUrl = `https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,700&text=${encodeURIComponent(text)}`;
@@ -34,37 +35,48 @@ export default async function Icon() {
         style={{
           width: "100%",
           height: "100%",
+          position: "relative",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-end",
           justifyContent: "center",
           borderRadius: "50%",
           background: BOIS,
+          border: `2px solid ${TERRACOTTA}`,
+          paddingBottom: 9,
         }}
       >
-        <div
+        {/* string of guinguette lights draped across the top */}
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 64 64"
+          style={{ position: "absolute", top: 0, left: 0 }}
+        >
+          <path
+            d="M12,23 Q32,9 52,23"
+            stroke={CREME}
+            strokeWidth={1.1}
+            fill="none"
+            opacity={0.55}
+          />
+          <circle cx="12" cy="23" r="2.6" fill={VELUX} />
+          <circle cx="26" cy="13.5" r="2.6" fill={VELUX} />
+          <circle cx="38" cy="13.5" r="2.6" fill={VELUX} />
+          <circle cx="52" cy="23" r="2.6" fill={VELUX} />
+        </svg>
+
+        <span
           style={{
-            width: "88%",
-            height: "88%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            border: `2px solid ${TERRACOTTA}`,
+            fontSize: 21,
+            fontFamily: "Fraunces",
+            fontStyle: "italic",
+            fontWeight: 700,
+            color: CREME,
+            letterSpacing: -0.5,
           }}
         >
-          <span
-            style={{
-              fontSize: 24,
-              fontFamily: "Fraunces",
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: CREME,
-              letterSpacing: -1,
-            }}
-          >
-            A&amp;M
-          </span>
-        </div>
+          A&amp;M
+        </span>
       </div>
     ),
     {
