@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  /* Guinguette A&M brand palette — from Brand Guidelines v2026 */
+  --color-bois: oklch(0.32 0.09 42); /* Bois brûlé — primaire, textes, poutres, nav */
+  --color-terracotta: oklch(0.48 0.14 38); /* Accent chaud — CTA, liens, badges */
+  --color-vert: oklch(0.55 0.12 130); /* Vert tonnelle — tags, icônes */
+  --color-creme: oklch(0.95 0.025 68); /* Crème lin — fond principal */
+  --color-velux: oklch(0.85 0.12 85); /* Jaune velux — accent soleil, rare */
+  --color-blanc-casse: oklch(0.98 0.015 68); /* Cartes, surfaces claires */
+  --color-noir: oklch(0.24 0.035 42); /* Noir chaud — texte principal, footer */
+}
+
+@theme inline {
+  --color-bois: var(--color-bois);
+  --color-terracotta: var(--color-terracotta);
+  --color-vert: var(--color-vert);
+  --color-creme: var(--color-creme);
+  --color-velux: var(--color-velux);
+  --color-blanc-casse: var(--color-blanc-casse);
+  --color-noir: var(--color-noir);
+
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-poppins);
+}
+
+::selection {
+  background: oklch(0.7 0.15 40 / 0.35);
+}
