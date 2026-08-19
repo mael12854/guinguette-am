@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import { submitOrder, type CartLine } from "@/app/carte/actions";
@@ -25,6 +25,14 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
   const [tableLabel, setTableLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [justAddedId, setJustAddedId] = useState<string | null>(null);
+  const justAddedTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (justAddedTimeout.current) clearTimeout(justAddedTimeout.current);
+    };
+  }, []);
 
   const byCategory = useMemo(() => {
     const map = new Map<MenuCategory, MenuItemWithOptions[]>();
@@ -64,6 +72,14 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
         },
       ];
     });
+
+    setJustAddedId(item.id);
+    if (justAddedTimeout.current) clearTimeout(justAddedTimeout.current);
+    justAddedTimeout.current = setTimeout(() => setJustAddedId(null), 1200);
+  }
+
+  function scrollToCart() {
+    document.getElementById("commande")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function removeLine(key: string) {
@@ -87,7 +103,7 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
   }
 
   return (
-    <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+    <div className={`grid lg:grid-cols-[1fr_320px] gap-10 ${cart.length > 0 ? "pb-20 lg:pb-0" : ""}`}>
       <div className="flex flex-col gap-10">
         {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((category) => (
           <div key={category}>
@@ -104,6 +120,7 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
                     setSelectedOptions((prev) => ({ ...prev, [item.id]: optionId }))
                   }
                   onAdd={() => addToCart(item)}
+                  justAdded={justAddedId === item.id}
                 />
               ))}
             </div>
@@ -114,7 +131,10 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
         )}
       </div>
 
-      <aside className="border border-bois/15 rounded-sm p-6 bg-blanc-casse h-fit sticky top-6 flex flex-col gap-4">
+      <aside
+        id="commande"
+        className="border border-bois/15 rounded-sm p-6 bg-blanc-casse h-fit sticky top-6 flex flex-col gap-4 scroll-mt-6"
+      >
         <h2 className="font-serif font-semibold text-xl text-bois">Votre commande</h2>
 
         {cart.length === 0 && (
@@ -186,6 +206,19 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
           {submitting ? "Envoi..." : "Commander"}
         </Button>
       </aside>
+
+      {cart.length > 0 && (
+        <button
+          onClick={scrollToCart}
+          className="lg:hidden fixed bottom-0 left-0 right-0 z-20 bg-bois text-blanc-casse px-5 py-4 flex items-center justify-between shadow-[0_-4px_12px_rgba(0,0,0,0.15)]"
+        >
+          <span className="text-sm font-medium">
+            {cart.reduce((n, line) => n + line.quantity, 0)} article
+            {cart.reduce((n, line) => n + line.quantity, 0) > 1 ? "s" : ""} — {total.toFixed(2)} €
+          </span>
+          <span className="text-sm underline">Voir la commande</span>
+        </button>
+      )}
     </div>
   );
 }
@@ -195,11 +228,13 @@ function MenuItemCard({
   selectedOption,
   onSelectOption,
   onAdd,
+  justAdded,
 }: {
   item: MenuItemWithOptions;
   selectedOption: string | undefined;
   onSelectOption: (optionId: string) => void;
   onAdd: () => void;
+  justAdded: boolean;
 }) {
   return (
     <div className="border border-bois/15 rounded-sm p-5 bg-blanc-casse flex flex-col gap-3">
@@ -235,8 +270,12 @@ function MenuItemCard({
       )}
 
       <div>
-        <Button variant="outline" onClick={onAdd} className="text-xs px-4 py-1.5">
-          Ajouter
+        <Button
+          variant={justAdded ? "filled" : "outline"}
+          onClick={onAdd}
+          className="text-xs px-4 py-1.5"
+        >
+          {justAdded ? "Ajouté ✓" : "Ajouter"}
         </Button>
       </div>
     </div>
