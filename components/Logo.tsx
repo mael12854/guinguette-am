@@ -60,42 +60,62 @@ function Monogram({
   fontSize: number;
   className?: string;
 }) {
-  const bulbR = size * 0.045;
-  const wireY = size * 0.34;
-  const peakY = size * 0.16;
-  const leftX = size * 0.22;
-  const midLeftX = size * 0.4;
-  const midRightX = size * 0.6;
-  const rightX = size * 0.78;
+  // sun — evokes the "jaune velux" accent and the room's verrière skylight
+  const sunCx = size * 0.5;
+  const sunCy = size * 0.24;
+  const sunR = size * 0.055;
+  const rayInner = size * 0.09;
+  const rayOuter = size * 0.15;
+  const rayAngles = [-60, -30, 0, 30, 60];
+
+  // river — the guinguette sits on the riverbank
+  const waveY = size * 0.78;
+  const waveX0 = size * 0.24;
+  const waveX1 = size * 0.5;
+  const waveX2 = size * 0.76;
+  const waveAmp = size * 0.035;
 
   return (
     <div
-      className={`relative flex items-end justify-center rounded-full shrink-0 overflow-hidden ${className}`}
+      className={`relative flex items-center justify-center rounded-full shrink-0 ${className}`}
       style={{
         width: size,
         height: size,
         border: `${borderWidth}px solid ${color}`,
-        paddingBottom: size * 0.16,
       }}
     >
-      {/* string of guinguette lights */}
       <svg
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         className="absolute top-0 left-0"
       >
+        <circle cx={sunCx} cy={sunCy} r={sunR} fill={VELUX} />
+        {rayAngles.map((deg) => {
+          const rad = (deg * Math.PI) / 180;
+          const dx = Math.sin(rad);
+          const dy = -Math.cos(rad);
+          return (
+            <line
+              key={deg}
+              x1={sunCx + dx * rayInner}
+              y1={sunCy + dy * rayInner}
+              x2={sunCx + dx * rayOuter}
+              y2={sunCy + dy * rayOuter}
+              stroke={VELUX}
+              strokeWidth={Math.max(1, size * 0.018)}
+              strokeLinecap="round"
+            />
+          );
+        })}
         <path
-          d={`M${leftX},${wireY} Q${size / 2},${peakY} ${rightX},${wireY}`}
+          d={`M${waveX0},${waveY} Q${(waveX0 + waveX1) / 2},${waveY - waveAmp} ${waveX1},${waveY} Q${(waveX1 + waveX2) / 2},${waveY + waveAmp} ${waveX2},${waveY}`}
           stroke={color}
-          strokeWidth={Math.max(1, size * 0.012)}
+          strokeWidth={Math.max(1, size * 0.02)}
           fill="none"
-          opacity={0.5}
+          opacity={0.6}
+          strokeLinecap="round"
         />
-        <circle cx={leftX} cy={wireY} r={bulbR} fill={VELUX} />
-        <circle cx={midLeftX} cy={peakY + (wireY - peakY) * 0.18} r={bulbR} fill={VELUX} />
-        <circle cx={midRightX} cy={peakY + (wireY - peakY) * 0.18} r={bulbR} fill={VELUX} />
-        <circle cx={rightX} cy={wireY} r={bulbR} fill={VELUX} />
       </svg>
 
       <span

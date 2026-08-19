@@ -28,6 +28,20 @@ async function loadFrauncesItalic(text: string) {
 
 export default async function Icon() {
   const fontData = await loadFrauncesItalic("A&M");
+  const s = size.width;
+
+  const sunCx = s * 0.5;
+  const sunCy = s * 0.24;
+  const sunR = s * 0.055;
+  const rayInner = s * 0.09;
+  const rayOuter = s * 0.15;
+  const rayAngles = [-60, -30, 0, 30, 60];
+
+  const waveY = s * 0.78;
+  const waveX0 = s * 0.24;
+  const waveX1 = s * 0.5;
+  const waveX2 = s * 0.76;
+  const waveAmp = s * 0.035;
 
   return new ImageResponse(
     (
@@ -37,32 +51,45 @@ export default async function Icon() {
           height: "100%",
           position: "relative",
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "center",
           justifyContent: "center",
           borderRadius: "50%",
           background: BOIS,
           border: `2px solid ${TERRACOTTA}`,
-          paddingBottom: 9,
         }}
       >
-        {/* string of guinguette lights draped across the top */}
         <svg
-          width="64"
-          height="64"
-          viewBox="0 0 64 64"
+          width={s}
+          height={s}
+          viewBox={`0 0 ${s} ${s}`}
           style={{ position: "absolute", top: 0, left: 0 }}
         >
+          <circle cx={sunCx} cy={sunCy} r={sunR} fill={VELUX} />
+          {rayAngles.map((deg) => {
+            const rad = (deg * Math.PI) / 180;
+            const dx = Math.sin(rad);
+            const dy = -Math.cos(rad);
+            return (
+              <line
+                key={deg}
+                x1={sunCx + dx * rayInner}
+                y1={sunCy + dy * rayInner}
+                x2={sunCx + dx * rayOuter}
+                y2={sunCy + dy * rayOuter}
+                stroke={VELUX}
+                strokeWidth={Math.max(1, s * 0.018)}
+                strokeLinecap="round"
+              />
+            );
+          })}
           <path
-            d="M12,23 Q32,9 52,23"
+            d={`M${waveX0},${waveY} Q${(waveX0 + waveX1) / 2},${waveY - waveAmp} ${waveX1},${waveY} Q${(waveX1 + waveX2) / 2},${waveY + waveAmp} ${waveX2},${waveY}`}
             stroke={CREME}
-            strokeWidth={1.1}
+            strokeWidth={Math.max(1, s * 0.02)}
             fill="none"
-            opacity={0.55}
+            opacity={0.6}
+            strokeLinecap="round"
           />
-          <circle cx="12" cy="23" r="2.6" fill={VELUX} />
-          <circle cx="26" cy="13.5" r="2.6" fill={VELUX} />
-          <circle cx="38" cy="13.5" r="2.6" fill={VELUX} />
-          <circle cx="52" cy="23" r="2.6" fill={VELUX} />
         </svg>
 
         <span
@@ -73,6 +100,7 @@ export default async function Icon() {
             fontWeight: 700,
             color: CREME,
             letterSpacing: -0.5,
+            position: "relative",
           }}
         >
           A&amp;M
