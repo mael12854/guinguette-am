@@ -63,8 +63,8 @@ export default function Home() {
                 Où nous trouver
               </h2>
               <p className="text-sm text-noir/80 leading-relaxed">
-                À la Maison Artoré, 28bis avenue de la République, à Igny — suivez la
-                lumière et le bruit du babyfoot.
+                28bis avenue de la République, à Igny — suivez la lumière et le bruit
+                du babyfoot.
                 <br />
                 <br />
                 Réservation conseillée le week-end, surtout quand le soleil est de la
