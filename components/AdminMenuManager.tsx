@@ -13,7 +13,7 @@ import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
 
 const CATEGORIES: { value: MenuCategory; label: string }[] = [
-  { value: "entree", label: "Entrée" },
+  { value: "entree", label: "À grignoter" },
   { value: "plat", label: "Plat" },
   { value: "dessert", label: "Dessert" },
   { value: "boisson", label: "Boisson" },

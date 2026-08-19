@@ -40,8 +40,8 @@ export default function Home() {
               description="Une partie en attendant les crêpes, une autre après le café."
             />
             <Feature
-              title="Cuisine maison"
-              description="Planches à partager, burgers, tartares et crêpes garnies selon vos goûts."
+              title="Fait maison"
+              description="Boissons fraîches, mousse au chocolat et petites choses à grignoter."
             />
           </div>
         </section>

@@ -8,7 +8,7 @@ import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
 
 const CATEGORY_LABELS: Record<MenuCategory, string> = {
-  entree: "Entrées",
+  entree: "À grignoter",
   plat: "Plats",
   dessert: "Desserts",
   boisson: "Boissons",
