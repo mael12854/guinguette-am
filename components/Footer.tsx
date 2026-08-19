@@ -15,6 +15,25 @@ export function Footer() {
             tout est fait avec soin, entre amis.
           </p>
         </div>
+        <div>
+          <h2 className="font-serif font-semibold text-lg text-[oklch(0.9_0.02_75)] mb-2">
+            Les Studios A&amp;M
+          </h2>
+          <p className="text-sm leading-relaxed max-w-2xl">
+            En dehors de la guinguette, Abel et Maël animent aussi{" "}
+            <a
+              href="https://beta-les-studios-aetm.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[oklch(0.85_0.05_60)] underline hover:text-blanc-casse"
+            >
+              Les Studios A&amp;M
+            </a>
+            , un collectif de création — cinéma, théâtre — fondé avec Maya (caméra) et
+            Martin (musique). Écriture, mise en scène, tournage, montage : ils font
+            leurs films et pièces de A à Z.
+          </p>
+        </div>
         <p className="font-serif italic text-base text-[oklch(0.85_0.05_60)]">
           &quot;A&amp;M&quot; pour Abel &amp; Maël — deux amis de trois ans qui ouvrent leur
           guinguette.
