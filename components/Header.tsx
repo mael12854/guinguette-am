@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { MyOrdersNavLink } from "./MyOrdersNavLink";
 
 const NAV_LINKS = [
   { href: "/carte", label: "Carte" },
@@ -22,6 +23,7 @@ export function Header() {
             {link.label}
           </Link>
         ))}
+        <MyOrdersNavLink />
       </nav>
     </header>
   );

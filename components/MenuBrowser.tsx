@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import { submitOrder, type CartLine } from "@/app/carte/actions";
+import { addMyOrderId } from "@/lib/my-orders";
 import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
 
@@ -99,6 +100,7 @@ export function MenuBrowser({ items }: { items: MenuItemWithOptions[] }) {
       setError(result.error);
       return;
     }
+    addMyOrderId(result.orderId);
     router.push(`/suivi/${result.orderId}`);
   }
 
