@@ -7,6 +7,7 @@ const LIGHT = "oklch(0.9 0.02 75)";
 const LIGHT_WORDMARK = "oklch(0.96 0.01 75)";
 const LIGHT_TAGLINE = "oklch(0.75 0.03 70)";
 const VELUX = "oklch(0.85 0.12 85)";
+const CREME = "oklch(0.95 0.025 68)";
 
 export function Logo({
   variant = "primary",
@@ -16,7 +17,17 @@ export function Logo({
   className?: string;
 }) {
   if (variant === "icon") {
-    return <Monogram size={64} borderWidth={2.5} color={TERRACOTTA} fontSize={24} className={className} />;
+    return (
+      <Monogram
+        size={64}
+        borderWidth={2.5}
+        ringColor={TERRACOTTA}
+        background={BOIS}
+        textColor={CREME}
+        fontSize={24}
+        className={className}
+      />
+    );
   }
 
   const isReversed = variant === "reversed";
@@ -26,7 +37,9 @@ export function Logo({
       <Monogram
         size={120}
         borderWidth={3}
-        color={isReversed ? LIGHT : TERRACOTTA}
+        ringColor={isReversed ? LIGHT : TERRACOTTA}
+        background={BOIS}
+        textColor={CREME}
         fontSize={44}
       />
       <div className="text-center">
@@ -50,13 +63,17 @@ export function Logo({
 function Monogram({
   size,
   borderWidth,
-  color,
+  ringColor,
+  background,
+  textColor,
   fontSize,
   className = "",
 }: {
   size: number;
   borderWidth: number;
-  color: string;
+  ringColor: string;
+  background: string;
+  textColor: string;
   fontSize: number;
   className?: string;
 }) {
@@ -81,7 +98,8 @@ function Monogram({
       style={{
         width: size,
         height: size,
-        border: `${borderWidth}px solid ${color}`,
+        background,
+        border: `${borderWidth}px solid ${ringColor}`,
       }}
     >
       <svg
@@ -110,7 +128,7 @@ function Monogram({
         })}
         <path
           d={`M${waveX0},${waveY} Q${(waveX0 + waveX1) / 2},${waveY - waveAmp} ${waveX1},${waveY} Q${(waveX1 + waveX2) / 2},${waveY + waveAmp} ${waveX2},${waveY}`}
-          stroke={color}
+          stroke={textColor}
           strokeWidth={Math.max(1, size * 0.02)}
           fill="none"
           opacity={0.6}
@@ -120,7 +138,7 @@ function Monogram({
 
       <span
         className="font-serif font-semibold relative"
-        style={{ color, fontSize }}
+        style={{ color: textColor, fontSize }}
       >
         A&amp;M
       </span>
