@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="bg-noir text-[oklch(0.75_0.03_70)] mt-auto">
@@ -15,6 +17,12 @@ export function Footer() {
             boissons fraîches, une mousse au chocolat maison, de quoi grignoter — mais
             tout est fait avec soin, entre amis.
           </p>
+          <Link
+            href="/blog"
+            className="inline-block text-sm text-[oklch(0.85_0.05_60)] underline hover:text-blanc-casse mt-1"
+          >
+            Lire le blog →
+          </Link>
         </div>
         <div>
           <h2 className="font-serif font-semibold text-lg text-[oklch(0.9_0.02_75)] mb-2">
