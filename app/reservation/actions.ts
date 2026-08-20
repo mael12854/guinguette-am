@@ -1,6 +1,8 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { sendTransactionalEmail } from "@/lib/brevo";
+import { reservationConfirmationEmail } from "@/lib/emails/reservation-confirmation";
 
 export interface ReservationFormState {
   error?: string;
@@ -36,6 +38,23 @@ export async function createReservation(
 
   if (error) {
     return { error: "Impossible d'enregistrer la réservation. Réessayez." };
+  }
+
+  if (email) {
+    try {
+      await sendTransactionalEmail({
+        to: { email, name },
+        subject: "Votre réservation à la Guinguette A&M",
+        htmlContent: reservationConfirmationEmail({
+          name,
+          date,
+          time,
+          partySize,
+        }),
+      });
+    } catch (emailError) {
+      console.error("Reservation confirmation email failed", emailError);
+    }
   }
 
   return { success: true };
