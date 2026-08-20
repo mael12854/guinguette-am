@@ -21,15 +21,15 @@ export async function createReservation(
   const time = String(formData.get("time") ?? "");
   const notes = String(formData.get("notes") ?? "").trim();
 
-  if (!name || !phone || !date || !time || !Number.isFinite(partySize) || partySize < 1) {
+  if (!name || !email || !date || !time || !Number.isFinite(partySize) || partySize < 1) {
     return { error: "Merci de remplir tous les champs obligatoires." };
   }
 
   const supabase = await createClient();
   const { error } = await supabase.from("reservations").insert({
     name,
-    phone,
-    email: email || null,
+    phone: phone || null,
+    email,
     party_size: partySize,
     reservation_date: date,
     reservation_time: time,
@@ -40,21 +40,19 @@ export async function createReservation(
     return { error: "Impossible d'enregistrer la réservation. Réessayez." };
   }
 
-  if (email) {
-    try {
-      await sendTransactionalEmail({
-        to: { email, name },
-        subject: "Votre réservation à la Guinguette A&M",
-        htmlContent: reservationConfirmationEmail({
-          name,
-          date,
-          time,
-          partySize,
-        }),
-      });
-    } catch (emailError) {
-      console.error("Reservation confirmation email failed", emailError);
-    }
+  try {
+    await sendTransactionalEmail({
+      to: { email, name },
+      subject: "Votre réservation à la Guinguette A&M",
+      htmlContent: reservationConfirmationEmail({
+        name,
+        date,
+        time,
+        partySize,
+      }),
+    });
+  } catch (emailError) {
+    console.error("Reservation confirmation email failed", emailError);
   }
 
   return { success: true };

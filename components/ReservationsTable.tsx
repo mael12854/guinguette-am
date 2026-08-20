@@ -18,7 +18,7 @@ export function ReservationsTable({ reservations }: { reservations: Reservation[
           <tr>
             <th className="text-left px-4 py-3">Date</th>
             <th className="text-left px-4 py-3">Nom</th>
-            <th className="text-left px-4 py-3">Téléphone</th>
+            <th className="text-left px-4 py-3">Contact</th>
             <th className="text-left px-4 py-3">Personnes</th>
             <th className="text-left px-4 py-3">Statut</th>
           </tr>
@@ -30,7 +30,10 @@ export function ReservationsTable({ reservations }: { reservations: Reservation[
                 {r.reservation_date} — {r.reservation_time.slice(0, 5)}
               </td>
               <td className="px-4 py-3">{r.name}</td>
-              <td className="px-4 py-3">{r.phone}</td>
+              <td className="px-4 py-3">
+                <div>{r.email}</div>
+                {r.phone && <div className="text-noir/50 text-xs">{r.phone}</div>}
+              </td>
               <td className="px-4 py-3">{r.party_size}</td>
               <td className="px-4 py-3">{STATUS_LABELS[r.status]}</td>
             </tr>

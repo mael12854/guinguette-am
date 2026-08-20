@@ -29,8 +29,8 @@ export interface MenuItemOption {
 export interface Reservation {
   id: string;
   name: string;
-  phone: string;
-  email: string | null;
+  phone: string | null;
+  email: string;
   party_size: number;
   reservation_date: string;
   reservation_time: string;

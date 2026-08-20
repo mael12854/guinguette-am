@@ -25,8 +25,8 @@ export function ReservationForm() {
   return (
     <form action={action} className="flex flex-col gap-4 max-w-md">
       <Field label="Nom" name="name" required />
-      <Field label="Téléphone" name="phone" type="tel" required />
-      <Field label="Email (optionnel)" name="email" type="email" />
+      <Field label="Email" name="email" type="email" required />
+      <Field label="Téléphone (optionnel)" name="phone" type="tel" />
       <div className="grid grid-cols-2 gap-4">
         <Field label="Date" name="date" type="date" required />
         <Field label="Heure" name="time" type="time" required />
