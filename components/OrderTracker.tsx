@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { submitReview } from "@/app/suivi/actions";
+import { submitReview, closeOrder } from "@/app/suivi/actions";
 import type { OrderStatus } from "@/lib/types";
 import type { OrderWithLines } from "@/lib/data/orders";
 
@@ -15,6 +15,7 @@ const STEPS: { status: OrderStatus; label: string }[] = [
 
 export function OrderTracker({ initialOrder }: { initialOrder: OrderWithLines }) {
   const [order, setOrder] = useState(initialOrder);
+  const [closed, setClosed] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
@@ -43,6 +44,16 @@ export function OrderTracker({ initialOrder }: { initialOrder: OrderWithLines })
     return (
       <div className="border border-terracotta/30 bg-terracotta/10 rounded-sm p-6">
         <p className="font-serif font-semibold text-lg text-bois">Commande annulée</p>
+      </div>
+    );
+  }
+
+  if (closed) {
+    return (
+      <div className="border border-vert/30 bg-vert/10 rounded-sm p-6 text-center">
+        <p className="font-serif font-semibold text-lg text-bois">
+          À bientôt à la Guinguette A&amp;M !
+        </p>
       </div>
     );
   }
@@ -92,12 +103,14 @@ export function OrderTracker({ initialOrder }: { initialOrder: OrderWithLines })
         </ul>
       </div>
 
-      {order.status === "servie" && <ReviewForm orderId={order.id} />}
+      {order.status === "servie" && (
+        <ReviewForm orderId={order.id} onClose={() => setClosed(true)} />
+      )}
     </div>
   );
 }
 
-function ReviewForm({ orderId }: { orderId: string }) {
+function ReviewForm({ orderId, onClose }: { orderId: string; onClose: () => void }) {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [name, setName] = useState("");
@@ -105,11 +118,25 @@ function ReviewForm({ orderId }: { orderId: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [closing, setClosing] = useState(false);
+
+  async function handleClose() {
+    setClosing(true);
+    await closeOrder(orderId);
+    onClose();
+  }
 
   if (submitted) {
     return (
-      <div className="border border-vert/30 bg-vert/10 rounded-sm p-6 text-center">
+      <div className="border border-vert/30 bg-vert/10 rounded-sm p-6 text-center flex flex-col items-center gap-3">
         <p className="font-serif font-semibold text-lg text-bois">Merci pour votre avis !</p>
+        <button
+          onClick={handleClose}
+          disabled={closing}
+          className="text-sm text-noir/50 hover:text-bois disabled:opacity-50"
+        >
+          {closing ? "..." : "Ça y est, j'ai terminé !"}
+        </button>
       </div>
     );
   }
@@ -164,13 +191,22 @@ function ReviewForm({ orderId }: { orderId: string }) {
         className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white resize-none"
       />
       {error && <p className="text-sm text-terracotta">{error}</p>}
-      <button
-        onClick={handleSubmit}
-        disabled={submitting}
-        className="inline-flex items-center justify-center text-sm font-medium px-6 py-2.5 rounded-sm transition-colors disabled:opacity-50 bg-terracotta text-blanc-casse hover:opacity-90 self-start"
-      >
-        {submitting ? "Envoi..." : "Envoyer mon avis"}
-      </button>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={handleSubmit}
+          disabled={submitting || closing}
+          className="inline-flex items-center justify-center text-sm font-medium px-6 py-2.5 rounded-sm transition-colors disabled:opacity-50 bg-terracotta text-blanc-casse hover:opacity-90"
+        >
+          {submitting ? "Envoi..." : "Envoyer mon avis"}
+        </button>
+        <button
+          onClick={handleClose}
+          disabled={submitting || closing}
+          className="text-sm text-noir/50 hover:text-bois disabled:opacity-50"
+        >
+          {closing ? "..." : "Ça y est, j'ai terminé !"}
+        </button>
+      </div>
     </div>
   );
 }

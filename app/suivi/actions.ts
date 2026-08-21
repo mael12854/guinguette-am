@@ -22,3 +22,10 @@ export async function submitReview(
   if (error) return { error: "Impossible d'enregistrer votre avis. Réessayez." };
   return { ok: true };
 }
+
+export async function closeOrder(orderId: string): Promise<{ ok: true } | { error: string }> {
+  const supabase = await createClient();
+  const { error } = await supabase.from("orders").delete().eq("id", orderId).eq("status", "servie");
+  if (error) return { error: "Impossible de clôturer la commande." };
+  return { ok: true };
+}
