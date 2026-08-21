@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import type { MenuCategory } from "@/lib/types";
+import type { MenuCategory, ReservationStatus } from "@/lib/types";
 
 async function requireStaff() {
   const supabase = await createClient();
@@ -89,6 +89,18 @@ export async function deleteOption(id: string) {
   await supabase.from("menu_item_options").delete().eq("id", id);
   revalidatePath("/admin");
   revalidatePath("/carte");
+}
+
+export async function updateReservationStatus(id: string, status: ReservationStatus) {
+  const supabase = await requireStaff();
+  await supabase.from("reservations").update({ status }).eq("id", id);
+  revalidatePath("/admin");
+}
+
+export async function deleteReservation(id: string) {
+  const supabase = await requireStaff();
+  await supabase.from("reservations").delete().eq("id", id);
+  revalidatePath("/admin");
 }
 
 function slugify(title: string) {
