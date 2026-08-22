@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AdminMenuManager } from "@/components/AdminMenuManager";
 import { ReservationsTable } from "@/components/ReservationsTable";
 import { ReviewsList } from "@/components/ReviewsList";
@@ -21,11 +22,20 @@ export default async function AdminPage() {
         <span className="font-serif font-bold text-lg text-blanc-casse">
           Administration
         </span>
-        <form action={logout}>
-          <button className="text-sm text-[oklch(0.85_0.02_70)] hover:text-blanc-casse">
-            Déconnexion
-          </button>
-        </form>
+        <div className="flex items-center gap-5">
+          <Link
+            href="/chevalet"
+            target="_blank"
+            className="text-sm text-[oklch(0.85_0.02_70)] hover:text-blanc-casse"
+          >
+            Imprimer un chevalet
+          </Link>
+          <form action={logout}>
+            <button className="text-sm text-[oklch(0.85_0.02_70)] hover:text-blanc-casse">
+              Déconnexion
+            </button>
+          </form>
+        </div>
       </header>
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-10 flex flex-col gap-14">
         <section>

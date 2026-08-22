@@ -27,3 +27,9 @@
 ::selection {
   background: oklch(0.7 0.15 40 / 0.35);
 }
+
+@media print {
+  @page {
+    margin: 1cm;
+  }
+}
