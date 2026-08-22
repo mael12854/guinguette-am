@@ -7,6 +7,7 @@ import { submitOrder, type CartLine } from "@/app/carte/actions";
 import { addMyOrderId } from "@/lib/my-orders";
 import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
+import { allergenLabel } from "@/lib/allergens";
 
 const CATEGORY_LABELS: Record<MenuCategory, string> = {
   entree: "À grignoter",
@@ -257,6 +258,11 @@ function MenuItemCard({
           <h3 className="font-serif font-semibold text-lg text-bois">{item.name}</h3>
           {item.description && (
             <p className="text-sm text-noir/70 mt-1">{item.description}</p>
+          )}
+          {item.allergens.length > 0 && (
+            <p className="text-xs text-noir/45 mt-1.5">
+              Allergènes : {item.allergens.map(allergenLabel).join(", ")}
+            </p>
           )}
         </div>
         <span className="text-sm font-medium text-noir shrink-0">

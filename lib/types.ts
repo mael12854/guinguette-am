@@ -15,6 +15,7 @@ export interface MenuItem {
   category: MenuCategory;
   image_url: string | null;
   is_available: boolean;
+  allergens: string[];
   created_at: string;
 }
 

@@ -11,6 +11,7 @@ import {
 } from "@/app/admin/actions";
 import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
+import { ALLERGENS } from "@/lib/allergens";
 
 const CATEGORIES: { value: MenuCategory; label: string }[] = [
   { value: "entree", label: "À grignoter" },
@@ -63,6 +64,9 @@ function NewItemForm() {
       <div className="sm:col-span-4">
         <FormField label="Description (optionnel)" name="description" />
       </div>
+      <div className="sm:col-span-4">
+        <AllergenPicker />
+      </div>
     </form>
   );
 }
@@ -112,6 +116,9 @@ function ItemRow({ item }: { item: MenuItemWithOptions }) {
             name="description"
             defaultValue={item.description ?? ""}
           />
+        </div>
+        <div className="sm:col-span-4">
+          <AllergenPicker defaultValues={item.allergens} />
         </div>
       </form>
 
@@ -180,6 +187,27 @@ function ItemRow({ item }: { item: MenuItemWithOptions }) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function AllergenPicker({ defaultValues = [] }: { defaultValues?: string[] }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label className="text-xs uppercase tracking-wide text-noir/60">Allergènes</label>
+      <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+        {ALLERGENS.map((a) => (
+          <label key={a.code} className="flex items-center gap-1.5 text-sm text-noir/80">
+            <input
+              type="checkbox"
+              name="allergens"
+              value={a.code}
+              defaultChecked={defaultValues.includes(a.code)}
+            />
+            {a.label}
+          </label>
+        ))}
+      </div>
     </div>
   );
 }

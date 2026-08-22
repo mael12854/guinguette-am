@@ -19,6 +19,7 @@ export async function createMenuItem(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
   const price = Number(formData.get("price"));
   const category = String(formData.get("category") ?? "plat") as MenuCategory;
+  const allergens = formData.getAll("allergens").map(String);
 
   if (!name || !Number.isFinite(price)) return;
 
@@ -27,6 +28,7 @@ export async function createMenuItem(formData: FormData) {
     description: description || null,
     price,
     category,
+    allergens,
   });
 
   revalidatePath("/admin");
@@ -40,12 +42,13 @@ export async function updateMenuItem(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
   const price = Number(formData.get("price"));
   const category = String(formData.get("category") ?? "plat") as MenuCategory;
+  const allergens = formData.getAll("allergens").map(String);
 
   if (!id || !name || !Number.isFinite(price)) return;
 
   await supabase
     .from("menu_items")
-    .update({ name, description: description || null, price, category })
+    .update({ name, description: description || null, price, category, allergens })
     .eq("id", id);
 
   revalidatePath("/admin");
