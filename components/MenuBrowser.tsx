@@ -260,9 +260,16 @@ function MenuItemCard({
             <p className="text-sm text-noir/70 mt-1">{item.description}</p>
           )}
           {item.allergens.length > 0 && (
-            <p className="text-xs text-noir/45 mt-1.5">
-              Allergènes : {item.allergens.map(allergenLabel).join(", ")}
-            </p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {item.allergens.map((code) => (
+                <span
+                  key={code}
+                  className="text-[11px] px-2 py-0.5 rounded-full border border-terracotta/25 text-terracotta/80 bg-terracotta/5"
+                >
+                  {allergenLabel(code)}
+                </span>
+              ))}
+            </div>
           )}
         </div>
         <span className="text-sm font-medium text-noir shrink-0">
