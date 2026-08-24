@@ -42,6 +42,9 @@ export function Footer() {
             Martin (musique). Écriture, mise en scène, tournage, montage : ils font
             leurs films et pièces de A à Z.
           </p>
+          <p className="text-xs uppercase tracking-[0.2em] text-[oklch(0.85_0.05_60)] mt-2">
+            Production • Cinéma • Théâtre
+          </p>
         </div>
         <p className="font-serif italic text-base text-[oklch(0.85_0.05_60)]">
           &quot;A&amp;M&quot; pour Abel &amp; Maël — deux amis de trois ans qui ouvrent leur
