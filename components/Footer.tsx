@@ -13,9 +13,11 @@ export function Footer() {
             guinguette chez les grands-parents de Maël : une grande pièce aux poutres
             apparentes, une
             verrière qui laisse entrer le soleil, un babyfoot dans un coin, et vue sur
-            la rivière. On n&apos;a pas grand-chose — quelques
+            la rivière. Le nom leur est venu presque par hasard — et il leur va plutôt
+            bien. On n&apos;a pas grand-chose — quelques
             boissons fraîches, une mousse au chocolat maison, de quoi grignoter — mais
-            tout est fait avec soin, entre amis.
+            tout est fait avec soin, entre amis. Ouvert le week-end, petits et grands
+            sont les bienvenus.
           </p>
           <Link
             href="/blog"
