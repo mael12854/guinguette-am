@@ -19,12 +19,20 @@ export function Footer() {
             tout est fait avec soin, entre amis. Ouvert le week-end, petits et grands
             sont les bienvenus.
           </p>
-          <Link
-            href="/blog"
-            className="inline-block text-sm text-[oklch(0.85_0.05_60)] underline hover:text-blanc-casse mt-1"
-          >
-            Lire le blog →
-          </Link>
+          <div className="flex flex-wrap gap-x-4 mt-1">
+            <Link
+              href="/a-propos"
+              className="inline-block text-sm text-[oklch(0.85_0.05_60)] underline hover:text-blanc-casse"
+            >
+              Notre histoire en entier →
+            </Link>
+            <Link
+              href="/blog"
+              className="inline-block text-sm text-[oklch(0.85_0.05_60)] underline hover:text-blanc-casse"
+            >
+              Lire le blog →
+            </Link>
+          </div>
         </div>
         <div>
           <h2 className="font-serif font-semibold text-lg text-[oklch(0.9_0.02_75)] mb-2">
