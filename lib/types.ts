@@ -37,6 +37,7 @@ export interface Reservation {
   reservation_time: string;
   status: ReservationStatus;
   notes: string | null;
+  table_choice: string | null;
   created_at: string;
 }
 

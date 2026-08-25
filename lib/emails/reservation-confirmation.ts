@@ -10,11 +10,13 @@ export function reservationConfirmationEmail({
   date,
   time,
   partySize,
+  tableChoice,
 }: {
   name: string;
   date: string;
   time: string;
   partySize: number;
+  tableChoice?: string | null;
 }) {
   const formattedDate = new Date(`${date}T00:00:00`).toLocaleDateString("fr-FR", {
     weekday: "long",
@@ -84,6 +86,7 @@ export function reservationConfirmationEmail({
                   ${row("Date", `<span style="text-transform: capitalize;">${formattedDate}</span>`)}
                   ${row("Heure", time)}
                   ${row("Personnes", String(partySize))}
+                  ${tableChoice ? row("Table souhaitée", tableChoice) : ""}
                 </table>
 
                 <p style="margin: 24px 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.6; color: #6B645C;">

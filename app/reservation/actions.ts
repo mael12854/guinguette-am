@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { sendTransactionalEmail } from "@/lib/brevo";
 import { reservationConfirmationEmail } from "@/lib/emails/reservation-confirmation";
+import { TABLE_OPTIONS } from "@/lib/tables";
 
 export interface ReservationFormState {
   error?: string;
@@ -20,6 +21,10 @@ export async function createReservation(
   const date = String(formData.get("date") ?? "");
   const time = String(formData.get("time") ?? "");
   const notes = String(formData.get("notes") ?? "").trim();
+  const tableChoiceRaw = String(formData.get("tableChoice") ?? "").trim();
+  const tableChoice = TABLE_OPTIONS.includes(tableChoiceRaw as (typeof TABLE_OPTIONS)[number])
+    ? tableChoiceRaw
+    : null;
 
   if (!name || !email || !date || !time || !Number.isFinite(partySize) || partySize < 1) {
     return { error: "Merci de remplir tous les champs obligatoires." };
@@ -34,6 +39,7 @@ export async function createReservation(
     reservation_date: date,
     reservation_time: time,
     notes: notes || null,
+    table_choice: tableChoice,
   });
 
   if (error) {
@@ -49,6 +55,7 @@ export async function createReservation(
         date,
         time,
         partySize,
+        tableChoice,
       }),
     });
   } catch (emailError) {

@@ -3,6 +3,8 @@
 import { useActionState } from "react";
 import { Button } from "@/components/Button";
 import { createReservation, type ReservationFormState } from "@/app/reservation/actions";
+import { TABLE_OPTIONS } from "@/lib/tables";
+import { Select } from "@/components/Select";
 
 const initialState: ReservationFormState = {};
 
@@ -32,6 +34,16 @@ export function ReservationForm() {
         <Field label="Heure" name="time" type="time" required />
       </div>
       <Field label="Nombre de personnes" name="partySize" type="number" min={1} required />
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs uppercase tracking-wide text-noir/60">
+          Table souhaitée (optionnel)
+        </label>
+        <Select
+          name="tableChoice"
+          placeholder="Peu importe"
+          options={TABLE_OPTIONS.map((table) => ({ value: table, label: table }))}
+        />
+      </div>
       <div className="flex flex-col gap-1.5">
         <label className="text-xs uppercase tracking-wide text-noir/60">
           Message (optionnel)

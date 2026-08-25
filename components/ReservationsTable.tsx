@@ -29,6 +29,7 @@ export function ReservationsTable({ reservations }: { reservations: Reservation[
             <th className="text-left px-4 py-3">Nom</th>
             <th className="text-left px-4 py-3">Contact</th>
             <th className="text-left px-4 py-3">Personnes</th>
+            <th className="text-left px-4 py-3">Table</th>
             <th className="text-left px-4 py-3">Statut</th>
             <th className="text-left px-4 py-3">Actions</th>
           </tr>
@@ -45,6 +46,7 @@ export function ReservationsTable({ reservations }: { reservations: Reservation[
                 {r.phone && <div className="text-noir/50 text-xs">{r.phone}</div>}
               </td>
               <td className="px-4 py-3">{r.party_size}</td>
+              <td className="px-4 py-3 text-noir/70">{r.table_choice ?? "—"}</td>
               <td className="px-4 py-3">
                 <span
                   className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[r.status]}`}

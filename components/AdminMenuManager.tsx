@@ -12,6 +12,7 @@ import {
 import type { MenuCategory } from "@/lib/types";
 import type { MenuItemWithOptions } from "@/lib/data/menu";
 import { ALLERGENS } from "@/lib/allergens";
+import { Select } from "@/components/Select";
 
 const CATEGORIES: { value: MenuCategory; label: string }[] = [
   { value: "entree", label: "À grignoter" },
@@ -43,17 +44,11 @@ function NewItemForm() {
       <FormField label="Prix (€)" name="price" type="number" step="0.01" required />
       <div className="flex flex-col gap-1.5">
         <label className="text-xs uppercase tracking-wide text-noir/60">Catégorie</label>
-        <select
+        <Select
           name="category"
-          className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white"
           defaultValue="plat"
-        >
-          {CATEGORIES.map((cat) => (
-            <option key={cat.value} value={cat.value}>
-              {cat.label}
-            </option>
-          ))}
-        </select>
+          options={CATEGORIES.map((cat) => ({ value: cat.value, label: cat.label }))}
+        />
       </div>
       <button
         type="submit"
@@ -92,17 +87,11 @@ function ItemRow({ item }: { item: MenuItemWithOptions }) {
         />
         <div className="flex flex-col gap-1.5">
           <label className="text-xs uppercase tracking-wide text-noir/60">Catégorie</label>
-          <select
+          <Select
             name="category"
             defaultValue={item.category}
-            className="border border-bois/20 rounded-sm px-3 py-2 text-sm bg-white"
-          >
-            {CATEGORIES.map((cat) => (
-              <option key={cat.value} value={cat.value}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
+            options={CATEGORIES.map((cat) => ({ value: cat.value, label: cat.label }))}
+          />
         </div>
         <button
           type="submit"
