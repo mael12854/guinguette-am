@@ -59,8 +59,11 @@ directory is its own git repo, pushed to GitHub `mael12854/guinguette-am`.
 
 ## Known gaps / ideas not yet done
 
-- No real photos anywhere on the site yet.
-- No Open Graph tags (link previews on WhatsApp/Instagram/etc. will be blank).
+- No real owner photos yet — homepage currently shows the address via Google
+  Maps Street View + map embeds (see brand/content decisions above), not
+  photos Abel & Maël took themselves.
+- Open Graph / Twitter Card tags are done (`app/opengraph-image.tsx`,
+  `app/twitter-image.tsx` — generated brand image, not a photo).
 - Staff password was given directly to the user as a value to set as the
   Supabase Auth user's password — it is **not** stored anywhere in this repo.
 
