@@ -27,7 +27,7 @@ export default async function MenuImprimablePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#DEDAD2] py-10 print:bg-white print:py-0 flex flex-col items-center gap-6 print:gap-0">
+    <div className="min-h-screen print:min-h-0 bg-[#DEDAD2] py-10 print:bg-white print:py-0 flex flex-col items-center gap-6 print:gap-0">
       <p className="text-sm text-noir/60 print:hidden max-w-sm text-center">
         Imprimez cette page (Ctrl/Cmd + P) — pensée pour une feuille A4, à poser sur les
         tables ou à afficher au comptoir.
