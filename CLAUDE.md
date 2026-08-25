@@ -71,20 +71,23 @@ directory is its own git repo, pushed to GitHub `mael12854/guinguette-am`.
 
 Global git config in this environment rewrites `https://github.com/` to a local
 proxy (`url.http://local_proxy@127.0.0.1:.../git/.insteadof`) that returns 403 for
-pushes. Working pattern used successfully:
+pushes. Simplest fix: call `add_repo` (owner `mael12854`, repo `guinguette-am`,
+access `push`) — it attaches the repo with working push credentials and
+reconfigures `origin` to the plain GitHub URL, no token/env juggling needed.
+`git push` then just works. (Fallback if `add_repo` isn't available: push with
+a token in a one-off `-c http.extraHeader="Authorization: Basic ..."`, never
+written to disk — the user has chosen to keep reusing the same GitHub PAT
+rather than regenerate one per session, their explicit call.)
 
-1. `git config --global --unset url."http://local_proxy@127.0.0.1:<port>/git/".insteadof`
-2. `git remote set-url origin https://github.com/mael12854/guinguette-am.git`
-3. Push with the token in a one-off header (never write it to disk/config):
-   `git -c credential.helper= -c http.extraHeader="Authorization: Basic $(printf 'x-access-token:<TOKEN>' | base64 -w0)" push origin main`
-4. Restore the proxy rewrite and remote URL afterwards so the repo is left in its
-   normal state:
-   `git config --global url."http://local_proxy@127.0.0.1:<port>/git/".insteadof "https://github.com/"`
-   `git remote set-url origin http://local_proxy@127.0.0.1:<port>/git/mael12854/guinguette-am.git`
-
-The user has chosen to keep reusing the same GitHub PAT rather than regenerate one
-per session (their explicit call, aware it stays live). Ask them for it when a push
-is needed and it's not already in the current session's context.
+**Push straight to `main`, every time, without asking first or waiting for a
+PR.** The user explicitly said re-asking each time is friction they don't
+want. Develop on `claude/guinguette-am-dev-bp20gc` as usual, then merge it
+into `main` and push — `git merge --ff-only` when possible, a normal
+`git merge` (creates a merge commit) when `main` has diverged (e.g. after a
+PR was merged separately) since `--ff-only` will refuse in that case. If a PR
+against this branch already exists when you're about to push, merging it via
+`mcp__github__merge_pull_request` is fine too — either path is expected to
+land on `main` without a confirmation round-trip.
 
 ## Supabase migrations
 
