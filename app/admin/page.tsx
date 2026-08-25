@@ -24,6 +24,13 @@ export default async function AdminPage() {
         </span>
         <div className="flex items-center gap-5">
           <Link
+            href="/menu-imprimable"
+            target="_blank"
+            className="text-sm text-[oklch(0.85_0.02_70)] hover:text-blanc-casse"
+          >
+            Imprimer le menu
+          </Link>
+          <Link
             href="/chevalet"
             target="_blank"
             className="text-sm text-[oklch(0.85_0.02_70)] hover:text-blanc-casse"
