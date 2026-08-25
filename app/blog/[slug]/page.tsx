@@ -41,7 +41,9 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
             .split(/\n\s*\n/)
             .filter((p) => p.trim())
             .map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+              <p key={i} className="whitespace-pre-line">
+                {paragraph}
+              </p>
             ))}
         </div>
       </main>
