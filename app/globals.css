@@ -30,6 +30,15 @@
 
 @media print {
   @page {
-    margin: 1cm;
+    size: A4;
+    margin: 12mm;
+  }
+
+  .printable-a4 {
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 }

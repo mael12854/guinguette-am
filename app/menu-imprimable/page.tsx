@@ -34,22 +34,21 @@ export default async function MenuImprimablePage() {
       </p>
 
       <div
-        className="print:shadow-none"
+        className="printable-a4"
         style={{
           width: "210mm",
-          minHeight: "297mm",
           background: "#FCFBF9",
           border: "1px solid #C9C0B2",
           boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-          padding: "24mm 20mm",
+          padding: "16mm 18mm",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
-          gap: "10mm",
+          gap: "7mm",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-          <PrintMonogram size={80} />
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+          <PrintMonogram size={68} />
           <div style={{ textAlign: "center" }}>
             <div
               style={{
@@ -77,23 +76,23 @@ export default async function MenuImprimablePage() {
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {CATEGORY_ORDER.filter((cat) => byCategory.has(cat)).map((category) => (
             <div key={category}>
               <div
                 style={{
                   fontFamily: "var(--font-fraunces), Georgia, serif",
                   fontWeight: 700,
-                  fontSize: 18,
+                  fontSize: 17,
                   color: BOIS,
                   borderBottom: `1.5px solid ${TERRACOTTA}`,
-                  paddingBottom: 6,
-                  marginBottom: 12,
+                  paddingBottom: 4,
+                  marginBottom: 8,
                 }}
               >
                 {CATEGORY_LABELS[category]}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {byCategory.get(category)!.map((item) => (
                   <div key={item.id} style={{ display: "flex", justifyContent: "space-between", gap: 16 }}>
                     <div>
@@ -163,8 +162,7 @@ export default async function MenuImprimablePage() {
 
         <div
           style={{
-            marginTop: "auto",
-            paddingTop: 20,
+            paddingTop: 14,
             borderTop: `1px dashed ${TERRACOTTA}`,
             display: "flex",
             alignItems: "center",
@@ -172,7 +170,7 @@ export default async function MenuImprimablePage() {
             gap: 20,
           }}
         >
-          <div style={{ width: 90, height: 90 }} dangerouslySetInnerHTML={{ __html: qrSvg }} />
+          <div style={{ width: 80, height: 80 }} dangerouslySetInnerHTML={{ __html: qrSvg }} />
           <div>
             <div
               style={{
