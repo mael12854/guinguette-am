@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { updateOrderStatus } from "@/app/cuisine/actions";
+import { playNewOrderChime, unlockKitchenSound } from "@/lib/kitchen-sound";
 import type { OrderStatus } from "@/lib/types";
 import type { OrderWithLines } from "@/lib/data/orders";
 
@@ -23,6 +24,7 @@ const STATUS_LABELS: Record<OrderStatus, string> = {
 
 export function KitchenBoard({ orders }: { orders: OrderWithLines[] }) {
   const router = useRouter();
+  const [soundOn, setSoundOn] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
@@ -30,7 +32,15 @@ export function KitchenBoard({ orders }: { orders: OrderWithLines[] }) {
       .channel("kitchen-orders")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "orders" },
+        { event: "INSERT", schema: "public", table: "orders" },
+        () => {
+          if (soundOn) playNewOrderChime();
+          router.refresh();
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "orders" },
         () => router.refresh()
       )
       .on(
@@ -43,55 +53,71 @@ export function KitchenBoard({ orders }: { orders: OrderWithLines[] }) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router]);
-
-  if (orders.length === 0) {
-    return <p className="text-sm text-noir/60">Aucune commande active.</p>;
-  }
+  }, [router, soundOn]);
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {orders.map((order) => {
-        const next = NEXT_STATUS[order.status];
-        return (
-          <div
-            key={order.id}
-            className="border border-bois/15 rounded-sm p-5 bg-blanc-casse flex flex-col gap-3"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-serif font-semibold text-lg text-bois">
-                {order.customer_name}
-                {order.table_label ? ` — ${order.table_label}` : ""}
-              </span>
-              <span className="text-xs uppercase tracking-wide px-2 py-1 rounded-full bg-vert/15 text-vert">
-                {STATUS_LABELS[order.status]}
-              </span>
-            </div>
-            <ul className="flex flex-col gap-1 text-sm text-noir/80">
-              {order.lines.map((line) => (
-                <li key={line.id}>
-                  {line.quantity}× {line.itemName}
-                  {line.optionLabel ? ` (${line.optionLabel})` : ""}
-                  {line.notes ? ` — ${line.notes}` : ""}
-                </li>
-              ))}
-            </ul>
-            {order.notes && (
-              <p className="text-sm text-terracotta bg-terracotta/10 rounded-sm px-2.5 py-1.5">
-                💬 {order.notes}
-              </p>
-            )}
-            {next && (
-              <button
-                onClick={() => updateOrderStatus(order.id, next.status)}
-                className="mt-1 self-start text-sm px-4 py-2 rounded-sm bg-terracotta text-blanc-casse hover:opacity-90"
+    <div className="flex flex-col gap-5">
+      <button
+        onClick={() => {
+          unlockKitchenSound();
+          setSoundOn((v) => !v);
+        }}
+        className={`self-start text-sm px-4 py-2 rounded-sm border transition-colors ${
+          soundOn
+            ? "border-vert/40 bg-vert/10 text-vert"
+            : "border-bois/25 text-bois hover:bg-bois/5"
+        }`}
+      >
+        {soundOn ? "🔔 Alertes sonores activées" : "🔕 Activer les alertes sonores"}
+      </button>
+
+      {orders.length === 0 ? (
+        <p className="text-sm text-noir/60">Aucune commande active.</p>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {orders.map((order) => {
+            const next = NEXT_STATUS[order.status];
+            return (
+              <div
+                key={order.id}
+                className="border border-bois/15 rounded-sm p-5 bg-blanc-casse flex flex-col gap-3"
               >
-                {next.label}
-              </button>
-            )}
-          </div>
-        );
-      })}
+                <div className="flex items-center justify-between">
+                  <span className="font-serif font-semibold text-lg text-bois">
+                    {order.customer_name}
+                    {order.table_label ? ` — ${order.table_label}` : ""}
+                  </span>
+                  <span className="text-xs uppercase tracking-wide px-2 py-1 rounded-full bg-vert/15 text-vert">
+                    {STATUS_LABELS[order.status]}
+                  </span>
+                </div>
+                <ul className="flex flex-col gap-1 text-sm text-noir/80">
+                  {order.lines.map((line) => (
+                    <li key={line.id}>
+                      {line.quantity}× {line.itemName}
+                      {line.optionLabel ? ` (${line.optionLabel})` : ""}
+                      {line.notes ? ` — ${line.notes}` : ""}
+                    </li>
+                  ))}
+                </ul>
+                {order.notes && (
+                  <p className="text-sm text-terracotta bg-terracotta/10 rounded-sm px-2.5 py-1.5">
+                    💬 {order.notes}
+                  </p>
+                )}
+                {next && (
+                  <button
+                    onClick={() => updateOrderStatus(order.id, next.status)}
+                    className="mt-1 self-start text-sm px-4 py-2 rounded-sm bg-terracotta text-blanc-casse hover:opacity-90"
+                  >
+                    {next.label}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
