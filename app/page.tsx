@@ -72,6 +72,33 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <div className="max-w-5xl mx-auto px-6 pb-14 grid sm:grid-cols-2 gap-6">
+            <div>
+              <div className="rounded-sm overflow-hidden border border-bois/15">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!4v1787648164910!6m8!1m7!1siGDSU8pY-6OrfoETpeYaFw!2m2!1d48.73401241523268!2d2.226089480134751!3f335.5992636578098!4f-4.628456086779508!5f0.7820865974627469"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Vue depuis la rue du 28bis avenue de la République, Igny"
+                  className="w-full h-[300px] border-0"
+                />
+              </div>
+              <p className="text-xs text-noir/50 mt-2">Vue depuis la rue</p>
+            </div>
+            <div>
+              <div className="rounded-sm overflow-hidden border border-bois/15">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2631.5028185509855!2d2.223444411930551!3d48.73409107119592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6785437f62ce7%3A0x3c88eb3070f2afde!2s28%20Bis%20Av.%20de%20la%20R%C3%A9publique%2C%2091430%20Igny!5e0!3m2!1sfr!2sfr!4v1787648100926!5m2!1sfr!2sfr"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Plan d'accès au 28bis avenue de la République, Igny"
+                  className="w-full h-[300px] border-0"
+                />
+              </div>
+              <p className="text-xs text-noir/50 mt-2">Le plan</p>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

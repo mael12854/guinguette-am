@@ -29,8 +29,12 @@ directory is its own git repo, pushed to GitHub `mael12854/guinguette-am`.
   film/theatre collective with Maya and Martin) and a "Lire le blog →" link.
 - Dark/night mode was explored once (published as a one-off Artifact preview) and
   explicitly rejected — stay on the day/light design.
-- No stock photos — if/when photos are added, use the owners' own photos of the
-  actual place (this was discussed, not yet done).
+- No stock photos. As of the homepage's "Où nous trouver" section, real imagery
+  of the actual address is a Google Maps Street View embed + a map embed (both
+  `<iframe src="https://www.google.com/maps/embed?pb=...">`, generated via
+  Maps' own Share → Embed a map, pointed at 28bis avenue de la République,
+  Igny) — not owner-uploaded photos yet. If real photos from Abel & Maël show
+  up later, they can replace or sit alongside these embeds.
 - Commits are authored as `Claude <noreply@anthropic.com>` (user's explicit
   preference — never use the user's own name/email for commits here).
 
