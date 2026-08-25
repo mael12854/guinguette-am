@@ -3,9 +3,10 @@
 # Guinguette A&M — project memory
 
 Website for Abel & Maël's guinguette, built from the Claude Design brand-guidelines
-handoff bundle one level up (`../README.md`, `../chats/`,
-`../project/Guinguette A&M - Brand Guidelines.dc.html`). This `site/` directory is
-its own git repo, pushed to GitHub `mael12854/guinguette-am`.
+handoff bundle. The original brand guidelines file is checked into this repo at
+`docs/brand-guidelines/Guinguette A&M - Brand Guidelines.dc.html` (colors, type,
+logo lockups — see "Stack" below for how those values were applied). This `site/`
+directory is its own git repo, pushed to GitHub `mael12854/guinguette-am`.
 
 ## Stack
 

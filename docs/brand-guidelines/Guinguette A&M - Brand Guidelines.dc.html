@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.95 0.025 65); font-family: 'Poppins', sans-serif; }
+    ::selection { background: oklch(0.7 0.15 40 / 0.35); }
+  </style>
+</helmet>
+
+<div style="width:1200px; margin:0 auto; padding:80px 64px 120px; color:oklch(0.24 0.035 42); display:flex; flex-direction:column; gap:96px;">
+
+  <!-- COVER -->
+  <section style="display:flex; flex-direction:column; align-items:flex-start; gap:24px; padding-bottom:48px; border-bottom:2px solid oklch(0.85 0.03 60);">
+    <div style="font-family:'Poppins'; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:oklch(0.5 0.1 40);">Charte graphique — Édition 2026</div>
+    <h1 style="font-family:'Fraunces'; font-weight:700; font-size:88px; line-height:0.95; margin:0; color:oklch(0.32 0.09 42);">Guinguette<br>A&amp;M</h1>
+    <p style="font-family:'Fraunces'; font-style:italic; font-size:22px; color:oklch(0.45 0.08 50); margin:0; max-width:620px;">Grande salle, poutres en bois, verrière, babyfoot — l'esprit guinguette dans un écrin généreux et chaleureux.</p>
+  </section>
+
+  <!-- LOGO -->
+  <section style="display:flex; flex-direction:column; gap:32px;">
+    <div style="display:flex; align-items:baseline; gap:16px;">
+      <h2 style="font-family:'Fraunces'; font-size:36px; margin:0; color:oklch(0.32 0.09 42);">01 — Le logo</h2>
+      <span style="font-size:14px; color:oklch(0.55 0.03 50);">Monogramme + signature typographique</span>
+    </div>
+
+    <div style="display:flex; gap:32px; flex-wrap:wrap;">
+      <!-- primary lockup on cream -->
+      <div style="flex:1 1 340px; background:oklch(0.95 0.025 68); border:1px solid oklch(0.88 0.02 60); border-radius:4px; padding:56px; display:flex; flex-direction:column; align-items:center; gap:20px;">
+        <div style="width:120px; height:120px; border-radius:50%; border:3px solid oklch(0.48 0.14 38); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Fraunces'; font-weight:600; font-size:44px; color:oklch(0.48 0.14 38);">A&amp;M</span>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Fraunces'; font-weight:700; font-size:26px; letter-spacing:0.02em; color:oklch(0.32 0.09 42);">GUINGUETTE A&amp;M</div>
+          <div style="font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:oklch(0.55 0.05 45); margin-top:4px;">Depuis 2026</div>
+        </div>
+      </div>
+
+      <!-- reversed lockup on dark -->
+      <div style="flex:1 1 340px; background:oklch(0.28 0.05 45); border-radius:4px; padding:56px; display:flex; flex-direction:column; align-items:center; gap:20px;">
+        <div style="width:120px; height:120px; border-radius:50%; border:3px solid oklch(0.9 0.02 75); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Fraunces'; font-weight:600; font-size:44px; color:oklch(0.9 0.02 75);">A&amp;M</span>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Fraunces'; font-weight:700; font-size:26px; letter-spacing:0.02em; color:oklch(0.96 0.01 75);">GUINGUETTE A&amp;M</div>
+          <div style="font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:oklch(0.75 0.03 70); margin-top:4px;">Depuis 2026</div>
+        </div>
+      </div>
+
+      <!-- horizontal / icon-only -->
+      <div style="flex:1 1 340px; background:oklch(0.95 0.025 68); border:1px solid oklch(0.88 0.02 60); border-radius:4px; padding:40px; display:flex; flex-direction:column; gap:24px; justify-content:center;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="width:64px; height:64px; border-radius:50%; border:2.5px solid oklch(0.48 0.14 38); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="font-family:'Fraunces'; font-weight:600; font-size:24px; color:oklch(0.48 0.14 38);">A&amp;M</span>
+          </div>
+          <div style="font-family:'Fraunces'; font-weight:700; font-size:22px; color:oklch(0.32 0.09 42);">Guinguette A&amp;M</div>
+        </div>
+        <div style="width:64px; height:64px; border-radius:50%; border:2.5px solid oklch(0.48 0.14 38); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Fraunces'; font-weight:600; font-size:24px; color:oklch(0.48 0.14 38);">A&amp;M</span>
+        </div>
+        <div style="font-size:12px; color:oklch(0.55 0.03 50);">Version icône seule — favicon, réseaux sociaux, tampon menu</div>
+      </div>
+    </div>
+
+    <div style="background:oklch(0.98 0.015 68); border:1px dashed oklch(0.8 0.02 60); border-radius:4px; padding:24px 32px; font-size:14px; color:oklch(0.45 0.03 50); line-height:1.6;">
+      <strong style="color:oklch(0.3 0.05 45);">Zone de protection —</strong> laisser un espace vide autour du logo égal à la hauteur du cercle. Ne jamais étirer, incliner ou recolorer le monogramme hors des couleurs de la charte. Taille minimale : 32px de diamètre pour le cercle.
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section style="display:flex; flex-direction:column; gap:32px;">
+    <div style="display:flex; align-items:baseline; gap:16px;">
+      <h2 style="font-family:'Fraunces'; font-size:36px; margin:0; color:oklch(0.32 0.09 42);">02 — Les couleurs</h2>
+      <span style="font-size:14px; color:oklch(0.55 0.03 50);">Palette pour le site et le print</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:140px; background:oklch(0.32 0.09 42);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Bois brûlé</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#4A3324 · oklch(0.32 0.09 42)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Primaire — textes, poutres, nav</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:140px; background:oklch(0.48 0.14 38);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Terracotta</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#7A4B2A · oklch(0.48 0.14 38)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Accent chaud — CTA, liens, badges</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:140px; background:oklch(0.55 0.12 130);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Vert tonnelle</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#4C7A4A · oklch(0.55 0.12 130)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Accent secondaire — tags, icônes</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:100px; background:oklch(0.95 0.025 68);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Crème lin</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#F3EEE3 · oklch(0.95 0.025 68)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Fond principal du site</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:140px; background:oklch(0.85 0.12 85);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Jaune velux</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#E8B94A · oklch(0.85 0.12 85)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Accent soleil — lumière, touches ponctuelles</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:100px; background:oklch(0.98 0.015 68);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Blanc cassé</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#FCFBF9 · oklch(0.98 0.015 68)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Cartes, surfaces claires</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; border-radius:4px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="height:100px; background:oklch(0.24 0.035 42);"></div>
+        <div style="padding:16px; background:oklch(0.98 0.015 68);">
+          <div style="font-weight:600; font-size:15px;">Noir chaud</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); font-family:monospace;">#2B2724 · oklch(0.24 0.035 42)</div>
+          <div style="font-size:12px; color:oklch(0.5 0.03 50); margin-top:4px;">Texte principal, footer</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:oklch(0.24 0.035 42); border-radius:4px; padding:28px 32px; display:flex; gap:40px; align-items:center;">
+      <span style="font-size:13px; color:oklch(0.75 0.03 70); text-transform:uppercase; letter-spacing:0.15em; flex-shrink:0;">Usage web</span>
+      <div style="display:flex; gap:24px; flex-wrap:wrap; font-size:14px; color:oklch(0.9 0.02 70);">
+        <span>Fond → crème lin</span>
+        <span>Texte → noir chaud</span>
+        <span>Boutons / liens → terracotta</span>
+        <span>Highlights / tags → vert tonnelle</span>
+        <span>Header / footer → bois brûlé</span>
+        <span>Touches soleil → jaune velux (rare, pour attirer l'œil)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section style="display:flex; flex-direction:column; gap:32px;">
+    <div style="display:flex; align-items:baseline; gap:16px;">
+      <h2 style="font-family:'Fraunces'; font-size:36px; margin:0; color:oklch(0.32 0.09 42);">03 — Typographie</h2>
+      <span style="font-size:14px; color:oklch(0.55 0.03 50);">Deux polices, un usage clair</span>
+    </div>
+
+    <div style="display:flex; gap:32px;">
+      <div style="flex:1; background:oklch(0.98 0.015 68); border:1px solid oklch(0.88 0.02 60); border-radius:4px; padding:32px;">
+        <div style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:oklch(0.55 0.03 50); margin-bottom:16px;">Titres — Fraunces</div>
+        <div style="font-family:'Fraunces'; font-weight:700; font-size:52px; color:oklch(0.32 0.09 42); line-height:1;">Aa Bb Cc</div>
+        <p style="font-family:'Fraunces'; font-size:16px; color:oklch(0.4 0.03 50); margin-top:16px;">Serif chaleureuse, un peu rustique — pour les titres, l'enseigne, le menu.</p>
+      </div>
+      <div style="flex:1; background:oklch(0.98 0.015 68); border:1px solid oklch(0.88 0.02 60); border-radius:4px; padding:32px;">
+        <div style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:oklch(0.55 0.03 50); margin-bottom:16px;">Textes — Poppins</div>
+        <div style="font-family:'Poppins'; font-weight:600; font-size:52px; color:oklch(0.32 0.09 42); line-height:1;">Aa Bb Cc</div>
+        <p style="font-family:'Poppins'; font-size:16px; color:oklch(0.4 0.03 50); margin-top:16px;">Sans-serif ronde et lisible — pour le corps de texte, la navigation, les horaires.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px; background:oklch(0.98 0.015 68); border:1px solid oklch(0.88 0.02 60); border-radius:4px; padding:32px;">
+      <div style="font-family:'Fraunces'; font-weight:700; font-size:40px; color:oklch(0.32 0.09 42);">H1 — Titre de page</div>
+      <div style="font-family:'Fraunces'; font-weight:600; font-size:28px; color:oklch(0.32 0.05 45);">H2 — Titre de section</div>
+      <div style="font-family:'Poppins'; font-weight:500; font-size:18px; color:oklch(0.3 0.03 50);">Sous-titre / intro</div>
+      <div style="font-family:'Poppins'; font-weight:400; font-size:16px; color:oklch(0.4 0.02 50);">Corps de texte — pour les descriptions de plats, les horaires, les infos pratiques.</div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section style="display:flex; flex-direction:column; gap:32px;">
+    <div style="display:flex; align-items:baseline; gap:16px;">
+      <h2 style="font-family:'Fraunces'; font-size:36px; margin:0; color:oklch(0.32 0.09 42);">04 — Applications</h2>
+      <span style="font-size:14px; color:oklch(0.55 0.03 50);">Aperçu site &amp; enseigne</span>
+    </div>
+
+    <div style="display:flex; gap:32px; flex-wrap:wrap;">
+      <!-- mini site preview -->
+      <div style="flex:1 1 500px; background:oklch(0.95 0.025 68); border-radius:6px; overflow:hidden; border:1px solid oklch(0.88 0.02 60);">
+        <div style="background:oklch(0.32 0.09 42); padding:14px 24px; display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-family:'Fraunces'; font-weight:700; font-size:18px; color:oklch(0.97 0.01 75);">Guinguette A&amp;M</div>
+          <div style="display:flex; gap:20px; font-size:13px; color:oklch(0.85 0.02 70);">
+            <span>Carte</span><span>Réservation</span><span>Infos</span>
+          </div>
+        </div>
+        <div style="padding:40px 32px; display:flex; flex-direction:column; gap:16px;">
+          <div style="font-family:'Fraunces'; font-weight:700; font-size:30px; color:oklch(0.32 0.09 42);">Une grande salle, deux amis</div>
+          <p style="font-family:'Poppins'; font-size:14px; color:oklch(0.4 0.02 50); line-height:1.6; max-width:400px;">Poutres en bois, verrière, babyfoot dans le coin — la carte, les horaires, la réservation.</p>
+          <div style="display:flex; gap:12px;">
+            <span style="background:oklch(0.48 0.14 38); color:oklch(0.98 0.005 75); font-size:13px; font-weight:500; padding:10px 22px; border-radius:2px;">Réserver</span>
+            <span style="border:1.5px solid oklch(0.48 0.14 38); color:oklch(0.48 0.14 38); font-size:13px; font-weight:500; padding:10px 22px; border-radius:2px;">Voir la carte</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- signage -->
+      <div style="flex:1 1 340px; background:oklch(0.32 0.09 42); border-radius:6px; padding:40px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
+        <div style="width:88px; height:88px; border-radius:50%; border:2.5px solid oklch(0.9 0.02 75); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Fraunces'; font-weight:600; font-size:32px; color:oklch(0.9 0.02 75);">A&amp;M</span>
+        </div>
+        <div style="font-family:'Fraunces'; font-weight:700; font-size:24px; color:oklch(0.96 0.01 75); text-align:center;">Enseigne extérieure</div>
+        <div style="font-size:12px; color:oklch(0.7 0.03 70); text-align:center;">Bois brûlé + lettrage crème — éclairage guirlande le soir</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NOTE -->
+  <section style="display:flex; flex-direction:column; gap:8px; padding-top:32px; border-top:2px solid oklch(0.85 0.03 60);">
+    <p style="font-family:'Fraunces'; font-style:italic; font-size:16px; color:oklch(0.45 0.05 45); margin:0;">"A&amp;M" pour Abel &amp; Maël — deux amis de dix ans qui ouvrent leur guinguette.</p>
+  </section>
+
+</div>
+
+</x-dc>
+</body>
+</html>
