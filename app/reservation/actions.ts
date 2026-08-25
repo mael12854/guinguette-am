@@ -31,7 +31,7 @@ export async function createReservation(
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.from("reservations").insert({
+  const baseRow = {
     name,
     phone: phone || null,
     email,
@@ -39,8 +39,17 @@ export async function createReservation(
     reservation_date: date,
     reservation_time: time,
     notes: notes || null,
-    table_choice: tableChoice,
-  });
+  };
+
+  let { error } = await supabase
+    .from("reservations")
+    .insert({ ...baseRow, table_choice: tableChoice });
+
+  // table_choice column may not exist yet if the migration hasn't landed —
+  // fall back to inserting without it rather than failing the reservation.
+  if (error?.code === "PGRST204") {
+    ({ error } = await supabase.from("reservations").insert(baseRow));
+  }
 
   if (error) {
     return { error: "Impossible d'enregistrer la réservation. Réessayez." };
